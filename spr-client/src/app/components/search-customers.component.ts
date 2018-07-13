@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Customer} from "../models/Customer";
+import {User} from "../models/User";
 import {DataService} from "../services/DataService";
 
 @Component({
@@ -10,7 +10,7 @@ import {DataService} from "../services/DataService";
 
 export class SearchCustomersComponent implements OnInit {
   lastName: string;
-  customers: Customer[];
+  customers: User[];
 
   constructor(private dataService: DataService) {}
 

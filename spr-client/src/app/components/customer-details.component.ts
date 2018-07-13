@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {DataService} from "../services/DataService";
-import {Customer} from "../models/Customer";
+import {User} from "../models/User";
 
 
 @Component({
@@ -12,7 +12,7 @@ import {Customer} from "../models/Customer";
 
 export class CustomerDetailsComponent {
 
-  @Input() customer: Customer;
+  @Input() customer: User;
 
   constructor(private dataService: DataService) {}
 

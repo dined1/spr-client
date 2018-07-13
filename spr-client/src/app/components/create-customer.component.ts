@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {DataService} from "../services/DataService";
-import {Customer} from "../models/Customer";
+import {User} from "../models/User";
 
 @Component({
   selector: 'app-create-customer',
@@ -10,7 +10,7 @@ import {Customer} from "../models/Customer";
 })
 
 export class CreateCustomerComponent implements OnInit {
-  customer = new Customer;
+  customer = new User;
   submitted = false;
   constructor(private dataService: DataService,
               private location: Location) {}
@@ -20,7 +20,7 @@ export class CreateCustomerComponent implements OnInit {
 
   newCustomer(): void {
     this.submitted = false;
-    this.customer = new Customer();
+    this.customer = new User();
   }
 
   private save(): void {

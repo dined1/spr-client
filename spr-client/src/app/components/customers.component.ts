@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from '../models/Customer';
+import { User } from '../models/User';
 import {DataService} from "../services/DataService";
 
 @Component({
@@ -10,8 +10,8 @@ import {DataService} from "../services/DataService";
 
 
 export class CustomersComponent implements OnInit {
-  customers: Customer[];
-  selectedCustomer: Customer;
+  customers: User[];
+  selectedCustomer: User;
 
   constructor(private dataService: DataService) {}
 
@@ -23,7 +23,7 @@ export class CustomersComponent implements OnInit {
     this.getCustomers();
   }
 
-  onSelect(cust: Customer): void {
+  onSelect(cust: User): void {
     this.selectedCustomer = cust;
   }
 }

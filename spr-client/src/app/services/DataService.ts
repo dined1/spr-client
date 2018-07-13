@@ -1,37 +1,37 @@
 import {Injectable} from '@angular/core'
 import {Headers, Http} from '@angular/http'
 
-import {Customer} from "../models/Customer";
+import {User} from "../models/User";
 
 @Injectable()
 export class DataService {
 
-  private customersUrl = 'allUsers';
+  private customersUrl = 'api/allUsers';
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http){}
 
 // Get all customers
-  getCustomers(): Promise<Customer[]> {
+  getCustomers(): Promise<User[]> {
     return this.http.get(this.customersUrl)
       .toPromise()
-      .then(response => response.json() as Customer[])
+      .then(response => response.json() as User[])
       .catch(DataService.handleError);
   }
 
-  getCustomersByLastName(lastName: string): Promise<Customer[]> {
-    const url = `findbylastname/${lastName}`;
+  getCustomersByLastName(lastName: string): Promise<User[]> {
+    const url = "findbylastname/${lastName}";
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json() as Customer)
+      .then(response => response.json() as User)
       .catch(DataService.handleError);
   }
 
-  create(customer: Customer): Promise<Customer> {
+  create(customer: User): Promise<User> {
     return this.http
-      .post("postcustomer", JSON.stringify(customer), {headers : this.headers})
+      .post("postcustomer/", JSON.stringify(customer), {headers : this.headers})
       .toPromise()
-      .then(res => res.json() as Customer)
+      .then(res => res.json() as User)
       .catch(DataService.handleError);
   }
 
@@ -43,8 +43,16 @@ export class DataService {
       .catch(DataService.handleError);
   }
 
+  login(user: User): Promise<User>{
+    return this.http
+      .post("api/login", {headers : this.headers})
+      .toPromise()
+      .then(res => res.json() as string)
+      .catch(DataService.handleError);
+  }
+
   private static handleError(error: any): Promise<any> {
-    console.error('Error', error); // for demo purposes only
+    console.error("Error", error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
 }
